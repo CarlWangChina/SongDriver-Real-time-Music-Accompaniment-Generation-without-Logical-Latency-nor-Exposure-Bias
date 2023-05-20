@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [
+        ""
+      ],
+      "stopAtEntry": false,
+      "cwd": "/home/ubuntu/project/ml/2022-3/2022-3-16ypf任务/2022-3-15lqh修改编码和向量拼接后的transformer/WAiMusic/structural_chord",
+      "environment": [],
+      "program": "/home/ubuntu/project/ml/2022-3/2022-3-16ypf任务/2022-3-15lqh修改编码和向量拼接后的transformer/WAiMusic/structural_chord/build/Debug/outDebug",
+      "internalConsoleOptions": "openOnSessionStart",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "externalConsole": false,
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

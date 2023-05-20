@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [
+        ""
+      ],
+      "stopAtEntry": false,
+      "cwd": "/home/ubuntu/project/ml/2022-3/Share-WAiMusic/Share-WAiMusic/weighted_features",
+      "environment": [],
+      "program": "/home/ubuntu/project/ml/2022-3/Share-WAiMusic/Share-WAiMusic/weighted_features/build/Debug/outDebug",
+      "internalConsoleOptions": "openOnSessionStart",
+      "MIMode": "gdb",
+      "miDebuggerPath": "/usr/bin/gdb",
+      "externalConsole": false,
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
