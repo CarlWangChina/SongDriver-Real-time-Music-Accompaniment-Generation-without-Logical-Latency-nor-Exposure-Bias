@@ -27,10 +27,15 @@ void buildMidi(const char* out, const char* sample) {
     midifile.addTrack();
     midifile.addTempo(0, 0, 120);
     midifile.addTrack();
+    midifile.addTimbre(0, 0, 0, 0);
+    midifile.addTimbre(1, 0, 0, 0);
     midifile.addTrack();
     midifile.addTimbre(2, 0, 0, 0);
     midifile.addTrack();
     midifile.addTimbre(3, 0, 0, 24);
+    midifile.addTrack();
+    midifile.addTimbre(4, 0, 0, 95);
+    midifile.addTrack();
 
     int tm = 0;
 
@@ -38,7 +43,7 @@ void buildMidi(const char* out, const char* sample) {
     int lastNoteStart = 0;
 
     chordScript script;
-    script.scriptPath = "./sleepy.lua";
+    script.scriptPath = "./default.lua";
     autochord::chordScript_init(script);
     autochord::sectioner_init(script, 16);
     script.fragId = 0;
@@ -48,19 +53,24 @@ void buildMidi(const char* out, const char* sample) {
     int nowTm = 0;
 
     script.playNote = [&](int tone, int vel, int channel) {
-        //printf("%d %d %d\n", tone, vel, channel);
         if (vel > 0) {
-            if (channel == 1) {
-                midifile.addNoteOn(2, nowTm, 0, tone, vel);
-            } else if (channel == 2) {
-                midifile.addNoteOn(3, nowTm, 0, tone, vel);
-            }
+            //printf("%d %d %d\n", tone, vel, channel);
+            //if (channel == 1) {
+            //    midifile.addNoteOn(2, nowTm, 0, tone, vel);
+            //} else if (channel == 2) {
+            //    midifile.addNoteOn(3, nowTm, 0, tone, vel);
+            //}
+            //if (channel == 1) {
+            //    printf("%d %d %d\n", tone, vel, channel);
+            //}
+            midifile.addNoteOn(channel + 1, nowTm, channel + 1, tone, vel);
         } else {
-            if (channel == 1) {
-                midifile.addNoteOff(2, nowTm, 0, tone, vel);
-            } else if (channel == 2) {
-                midifile.addNoteOff(3, nowTm, 0, tone, vel);
-            }
+            //if (channel == 1) {
+            //    midifile.addNoteOff(2, nowTm, 0, tone, vel);
+            //} else if (channel == 2) {
+            //    midifile.addNoteOff(3, nowTm, 0, tone, vel);
+            //}
+            midifile.addNoteOff(channel + 1, nowTm, channel + 1, tone, vel);
         }
     };
     script.setIns = [&](int a, int b) {
@@ -78,10 +88,10 @@ void buildMidi(const char* out, const char* sample) {
             for (auto& note : note_list) {
                 if (note != lastNote) {
                     if (note != 0) {
-                        midifile.addNoteOn(1, nowTm, 0, note, 90);
+                        midifile.addNoteOn(1, nowTm, 0, note, 120);
                     }
                     if (lastNote != 0) {
-                        midifile.addNoteOff(1, nowTm, 0, lastNote, 90);
+                        midifile.addNoteOff(1, nowTm, 0, lastNote, 120);
                     }
                     lastNote = note;
                 }
@@ -143,7 +153,7 @@ int getdir(const char* pathname, const std::function<void(const char*)>& callbac
 }
 
 int main(int argc, char* argv[]) {
-    if(argc<3){
+    if (argc < 3) {
         return 0;
     }
     //getdir("../outputs/chordplay/", [](const char* pathname) {

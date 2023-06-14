@@ -64,25 +64,28 @@ function main(env)
 
         print("pianoShift", pianoShift)
 
+        P(env, 1, 4, 3, -12)
+        P(env, 2, 4, 3, -12)
+        P(env, 3, 4, 3, -12)
         if playListSize(env) == 1 then
             -- 一个音：
             P(env, 1, 4, 2, 0) -- [1,0,4,Guitar,p4]
-            P(env, 1, 4, 1, pianoShift) -- [1,0,4,Piano,p4]
+            P(env, 1, 3, 1, pianoShift) -- [1,0,4,Piano,p4]
         elseif playListSize(env) == 2 then
             -- 两个音：
             -- [1,0,4,Guitar,p4],[2,0,4,Guitar,p4]
             -- [1,0,4,Piano,p4],[2,0,4,Piano,p4]
-            P(env, 1, 4, 1, pianoShift)
+            P(env, 1, 3, 1, pianoShift)
             P(env, 1, 4, 2, guitarShift)
             waitTime(env, 32)
-            P(env, 2, 4, 1, pianoShift)
+            P(env, 2, 3, 1, pianoShift)
             P(env, 2, 4, 2, guitarShift)
         elseif playListSize(env) == 3 then
             -- 三个音：
             -- [1,0,4,Guitar,p4],[2,0,4,Guitar,p4,+12],[3,0,4,Guitar,p4]
             -- [1,0,4,Piano,p4],[2,2,2,Piano,p3,+12],[3,0,4,Piano,p4]
-            P(env, 1, 4, 1, pianoShift)
-            P(env, 3, 4, 1, pianoShift)
+            P(env, 1, 3, 1, pianoShift)
+            P(env, 3, 3, 1, pianoShift)
             P(env, 1, 4, 2, guitarShift)
             P(env, 2, 4, 2, guitarShift + 12)
             P(env, 3, 4, 2, guitarShift)
@@ -96,8 +99,8 @@ function main(env)
             P(env, 2, 4, 2, guitarShift + 12)
             P(env, 3, 4, 2, guitarShift + 12)
             P(env, 4, 4, 2, guitarShift)
-            P(env, 1, 4, 1, pianoShift)
-            P(env, 4, 4, 1, pianoShift)
+            P(env, 1, 3, 1, pianoShift)
+            P(env, 4, 3, 1, pianoShift)
             waitTime(env, 32)
             P(env, 2, 3, 1, pianoShift + 12)
             P(env, 3, 3, 1, pianoShift + 12)
